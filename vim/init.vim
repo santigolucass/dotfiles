@@ -8,104 +8,66 @@ if !filereadable(expand(vimdir . "autoload/plug.vim"))
 endif
 
 call plug#begin('~/.vim/plugged')
-" lint and fixer
-Plug 'dense-analysis/ale'
-" Coc <3
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-" Airline for the tabs
+
+" ================= looks and GUI stuff ================== "
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'mhinz/vim-startify' " Landing Page for VIM
 Plug 'edkolev/tmuxline.vim'
-Plug 'honza/vim-snippets'
-" Comment in/out stuff easily
-Plug 'tomtom/tcomment_vim'
-" Git
-Plug 'tpope/vim-fugitive'
-" Easily change delimiters
-Plug 'tpope/vim-surround'
-" Auto close pairs
-Plug 'jiangmiao/auto-pairs'
-" " Ctags
-" Plug 'ludovicchabant/vim-gutentags'
-" Unpaired
-Plug 'tpope/vim-unimpaired'
-" Git Diff
-Plug 'airblade/vim-gitgutter'
-" Show lines changed
-Plug 'airblade/vim-gitgutter'
-" Multple cursors is hot
-Plug 'terryma/vim-multiple-cursors'
-""" FZF
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
-Plug '~/.fzf'
-Plug 'junegunn/fzf.vim'
-" CoolIcons
 Plug 'ryanoasis/vim-devicons'
+Plug 'blueyed/vim-diminactive' " Dim inactive panes
+Plug 'morhetz/gruvbox'
+Plug 'haishanh/night-owl.vim'
+
+" ================= Functionalities ================= "
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
+Plug 'dense-analysis/ale'
+Plug 'honza/vim-snippets'
+Plug 'tomtom/tcomment_vim' " Easy comments
+Plug 'tpope/vim-surround' " Surround words
+Plug 'jiangmiao/auto-pairs'
+Plug 'terryma/vim-multiple-cursors' "Multiple select CTRL+N
 Plug 'scrooloose/nerdtree'
-" Polyglot
-Plug 'sheerun/vim-polyglot'
-" Ruby
+Plug 'Yggdroot/indentLine'
+Plug 'tpope/vim-repeat'
+Plug 'airblade/vim-rooter' " Automatically change dir when opening files
+Plug 'wellle/targets.vim' " Many handy text objects Ex: viw
+Plug 'ntpeters/vim-better-whitespace' " Delete whitespace
+Plug 'easymotion/vim-easymotion'
+Plug 'Shougo/echodoc.vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'AndrewRadev/splitjoin.vim'
+
+" ================= Git related ================= "
+Plug 'airblade/vim-gitgutter' "Show changed lines
+Plug 'tpope/vim-fugitive'
+
+" ================= Ruby ================= "
 Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
 Plug 'ngmy/vim-rubocop'
 Plug 'tpope/vim-cucumber'
-Plug 'janko-m/vim-test'
-" Run code with ,r
-Plug 'xianzhon/vim-code-runner'
-" Multiple cursors
-Plug 'terryma/vim-multiple-cursors'
-" Change background of inactive windows
-Plug 'blueyed/vim-diminactive'
-
-" Colorschemes/themes
-Plug 'morhetz/gruvbox'
-Plug 'haishanh/night-owl.vim'
-
-" Display indent steps
-Plug 'Yggdroot/indentLine'
-" Add end to ruby blocks automatically
 Plug 'tpope/vim-endwise'
-" Make . work with surround (and other plugins)
-Plug 'tpope/vim-repeat'
-" Keep layout when deleting/wiping buffers
-Plug 'qpkorr/vim-bufkill'
 
-" Highlight colors
-Plug 'ap/vim-css-color'
-" Automatically change dir when opening files
-Plug 'airblade/vim-rooter'
 
-" Many handy text objects
-Plug 'wellle/targets.vim'
-
-" " Easy swap of text objects
-" Plug 'tommcdo/vim-exchange'
-
-" Ruby blocks text object
-Plug 'kana/vim-textobj-user'
-Plug 'nelstrom/vim-textobj-rubyblock'
-
-"whitespace
-Plug 'ntpeters/vim-better-whitespace'
-
-" utils
-Plug 'mattn/emmet-vim'
-Plug 'godlygeek/tabular'
-Plug 'easymotion/vim-easymotion'
-
-" JS highlighting and indent support. Sometimes buggy, but has support for
-" " jsdocs and flow
+" ================= HTML/CSS/JS ================= "
 Plug 'pangloss/vim-javascript', { 'for': ['javascript']}
+Plug 'alvan/vim-closetag' " Close HTML tags
+Plug 'ap/vim-css-color'
 
-"buffer files
-Plug 'Shougo/denite.nvim'
-" doc
-Plug 'Shougo/echodoc.vim'
-
-" splitjoin
-Plug 'AndrewRadev/splitjoin.vim'
-" using ctrl + h/j/k/l on tmux
-Plug 'christoomey/vim-tmux-navigator'
+" ================= Other ================= "
+Plug 'janko-m/vim-test'
+Plug 'sheerun/vim-polyglot'
+" Plug 'tpope/vim-unimpaired'
+" Plug '~/.fzf'
+" Plug 'junegunn/fzf.vim'
+" Plug 'xianzhon/vim-code-runner'
+" Plug 'qpkorr/vim-bufkill' " Keep layout when deleting/wiping buffers
+" Plug 'kana/vim-textobj-user'
+" Plug 'nelstrom/vim-textobj-rubyblock'
+" Plug 'mattn/emmet-vim'
+" Plug 'godlygeek/tabular'
 
 call plug#end()
 
@@ -118,12 +80,13 @@ set encoding=UTF-8
 let g:mapleader=","
 let mapleader=","
 
+set title                                               " tab title as file file
 set number
 set relativenumber
 set autoread
 set ruler
+colorschem night-owl
 " colorschem night-owl
-colorschem gruvbox
 
 set t_Co=256
 set background=dark
@@ -168,7 +131,6 @@ set smartcase
 set showmode
 set showcmd
 
-" Share the clipboard outside of macvim
 set clipboard+=unnamedplus
 
 " Highlight search results
@@ -184,10 +146,12 @@ let g:loaded_netrwPlugin = 1
 
 " airline
 let g:airline#extensions#tabline#formatter = 'default'
-let g:airline_theme='minimalist'
+let g:airline_theme='jellybeans'
 let g:airline_powerline_fonts = 1
-let g:tmuxline_preset = 'full'
+let g:tmuxline_preset = 'tmux'
 " install nerd font
+set guifont=DroidSansMono\ Nerd\ Font\ 11
+
 
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
